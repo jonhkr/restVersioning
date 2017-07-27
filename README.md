@@ -1,11 +1,11 @@
-#Spring REST versioning extension (POC)
+# Spring REST versioning extension (POC)
 
 
 This is a Spring extension that allows routing to different methods depending on the version of the resource that is
 requested. This code is based on the suggestions from a Stack Overflow question I asked - [How to manage REST API versioning with
 spring?](http://stackoverflow.com/questions/20198275/how-to-manage-rest-api-versioning-with-spring ).
 
-##Approaches to manage versions
+## Approaches to manage versions
 There are 2 main approaches to manage versions. One is to make the version explicit as part of the URL
 (e.g. http://host.com/1.1/resource), but this goes against the purist view that a resource identifier, should be the
 same regardless of the representation. The more *correct* approach is to use the Accept header to differentiate the
@@ -52,7 +52,7 @@ allows to to extend the default `RequestMappingHandlerMapping` in order to add a
 `VersionedResourceRequestCondition` is responsible for figuring out if a controller method is a candidate to be invoked.
 
 
-##Drawbacks of this implementation
+## Drawbacks of this implementation
 1. Given that we need a custom `RequestMappingHandlerMapping`, instantiating it is non-trivial (see the 
 `WebConfiguration` class) and there's a danger that this class will change in a follow up version of spring and might 
 cause unexpected behaviour.
@@ -60,7 +60,7 @@ cause unexpected behaviour.
 non-existent versions to methods without a version upper boundary 
 (see `TestControllerTest.shouldReturnUnboundedVersionForCallToVersion32`).
 
-##When is this approach a bad idea?
+## When is this approach a bad idea?
 I think using versions on the URLs for public APIs is a better approach as the users might not be familiar with HTTP
 (as an example Twitter and Facebook put the version on the URL). In these cases, making the API as simple as possible
 to use is quite important.
